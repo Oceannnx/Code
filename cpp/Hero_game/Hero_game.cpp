@@ -3,7 +3,7 @@
 #include<cmath>
 using namespace std;
 int main(){
-    int n = 10;
+    int n = 15;
     int map[n][n];
     int tree[2] = {rand()%10,rand()%10};
     int birth_week = 5, first_digit = 7, second_digit = 5;                 //เกิดวันศุกร์รหัส 57
@@ -14,7 +14,6 @@ int main(){
             map[i][j]=0;                                                 
         };
     }
-
     map[tree[0]][tree[1]] = 1;                                   //Tree 1 (1,7)
     map[birth_week][first_digit] = 2;                            //Hero 2 (5,7)
     map[10 - birth_week][second_digit] = 3;                     //enemy 3 (5,7)
@@ -35,16 +34,17 @@ int main(){
         for(int j=0;j<n;j++){
             cout<<map[i][j]<<" ";
         }
-        cout<<"\n";
+        cout<<endl;
     }
-    int taxi_cab = abs(birth_week - (10 - birth_week)) + abs(first_digit - second_digit);
+
+    float taxi_cab = abs(birth_week - (10 - birth_week)) + abs(first_digit - second_digit);
     float euclidean = sqrt(pow(birth_week - (10 - birth_week),2) + pow(first_digit - second_digit,2));
     //อันนี้แบบอาจารย์
     // int chebyshev = abs(birth_week - (10 - birth_week)) > abs(first_digit - second_digit) ? abs(birth_week - (10 - birth_week)) : abs(first_digit - second_digit);
-    int chebyshev = max(abs(birth_week - (10 - birth_week)),abs(first_digit - second_digit));
+    float chebyshev = max(abs(birth_week - (10 - birth_week)),abs(first_digit - second_digit));
     //มันย่อให่สั้นได้ แต่อ่านยากชิบหาย
-    cout<<"Taxi Cab Algorithm : "<<taxi_cab;
-    cout<<"\nEuclidean Algorithm : "<<euclidean;
-    cout<<"\nChebyshev Algorithm : "<<chebyshev;
+    cout<<"Taxi Cab Algorithm : "<<taxi_cab<<endl;
+    cout<<"Euclidean Algorithm : "<<euclidean<<endl;
+    cout<<"Chebyshev Algorithm : "<<chebyshev;
     return 0;
 }
