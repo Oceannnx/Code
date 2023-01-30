@@ -16,32 +16,40 @@ double MaxStudent(Student student[],int size){
             max_score = student[i].score;
         }
     }
-    for(int i=0; i<size; i++){
-        if(student[i].score == max_score){
-            cout<<student[i].name<<" ";
-        }
-    }
-    cout<<": ";
     return max_score;
 }
-double MinStudent(Student student[],int size){
-    int min_score = student[0].score;
-    string student_name;
+string MaxStudentName(Student student[],int size){
+    int max_score = student[0].score;
+    string name;
     for(int i=0; i<size; i++){
-        // cout<<student[i].name<<" ";
+        if(max_score < student[i].score or i==0){
+            max_score = student[i].score;
+            name = student[i].name;
+        }
+    }
+    return name;
+}
+double MinStudent(Student student[],int size){
+    int min_score = MaxStudent(student,size);
+    for(int i=0; i<size; i++){
         if(student[i].score < min_score or i == 0){
             min_score = student[i].score;
         }
 
     }
-    for(int i=0; i<size; i++){
-        if(student[i].score == min_score){
-            cout<<student[i].name<<" ";
-        }
-    }
-    
-    cout<<": ";
     return min_score;
+}
+string MinStudentName(Student student[],int size){
+    int min_score = MaxStudent(student,size);
+    string student_name;
+    for(int i=0; i<size; i++){
+        if(student[i].score < min_score or i == 0){
+            min_score = student[i].score;
+            student_name = student[i].name;
+        }
+
+    }
+    return student_name;
 }
 double AvrScore(Student student[],int size){
     double avr_score = 0;
@@ -117,20 +125,20 @@ void GradeStudent(Student student[], int size){
 int main(){
     Student student[10];
     student[0] = {"John",60};
-    student[1] = {"Ono",63};
+    student[1] = {"Ono",60};
     student[2] = {"Non",66};
     student[3] = {"Bryan",63};
     student[4] = {"Earth",77};
     student[5] = {"Mon",63};
-    student[6] = {"Toto",60};
+    student[6] = {"Toto",63};
     student[7] = {"Boom",85};
     student[8] = {"Dikolo",85};
     student[9] = {"Boss",77};
     int size = (sizeof(student)/(sizeof(student[0])));
-
+    
     // cout<<"size : "<<size<<endl;
-    cout<<"Max score : "<<MaxStudent(student,size)<<endl;
-    cout<<"Min score : "<<MinStudent(student,size)<<endl;
+    cout<<"Max score : "<<MaxStudentName(student,size)<<" = "<<MaxStudent(student,size)<<endl;
+    cout<<"Min score : "<<MinStudentName(student,size)<<" = "<<MinStudent(student,size)<<endl;
     cout<<"Average score : "<<AvrScore(student,size)<<endl;
     cout<<"Mode score : "<<ModeScore(student,size)<<endl;
     cout<<"Median score : "<<MedianScore(student,size)<<endl;
