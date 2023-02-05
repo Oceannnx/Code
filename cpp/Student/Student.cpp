@@ -1,6 +1,5 @@
 #include<iostream>
 #include <bits/stdc++.h>
-#include <cmath>
 using namespace std;
 
 struct Student{
@@ -132,7 +131,7 @@ int main(){
     student[5] = {"Mon",63};
     student[6] = {"Toto",63};
     student[7] = {"Boom",85};
-    student[8] = {"Dikolo",85};
+    student[8] = {"Dikolo",100};
     student[9] = {"Boss",77};
     int size = (sizeof(student)/(sizeof(student[0])));
     

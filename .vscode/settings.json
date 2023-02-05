@@ -11,5 +11,6 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "typeindex": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
