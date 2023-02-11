@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <iomanip> 
 using namespace std;
 
 struct Score {
@@ -51,18 +52,24 @@ public:
         int n = min(count, 3);
         cout << "Top " << n << " scores:" << endl;
         for (int i = 0; i < n; i++) {
-            cout << scores[i].name << ": " << scores[i].score << endl;
+            cout << setw(10) << left << scores[i].name << ": " << scores[i].score << endl;
         }
     }
 };
 
 int main() {
+    int player_count,score;
+    string name;
     Scoreboard scores;
-    scores.addScore("Ono", 100);
-    scores.addScore("Bryan", 200);
-    scores.addScore("Boom", 300);
-    scores.addScore("Dikolo", 420);
-    scores.addScore("non", 359);
+    cout << "Enter player : " << endl;
+    cin >> player_count;
+    for(int i=0; i<player_count; i++){
+        cout << "Enter name : ";
+        cin >> name;
+        cout << "Enter score : ";
+        cin >> score;
+        scores.addScore(name, score);
+    }
     scores.showTopScores();
     return 0;
 }
