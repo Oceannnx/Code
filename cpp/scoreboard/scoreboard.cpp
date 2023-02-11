@@ -11,6 +11,7 @@ struct Score {
 struct node {
     Score data;
     node *next;
+    node *prev;
 };
 class Scoreboard {
 private:
@@ -26,13 +27,13 @@ public:
         temp->data.name = name;
         temp->data.score = score;
         temp->next = NULL;
+        temp->prev = tail;
         if (head == NULL) {
             head = temp;
-            tail = temp;
         } else {
             tail->next = temp;
-            tail = temp;
         }
+        tail = temp;
     }
 
     void showTopScores() {
@@ -58,18 +59,31 @@ public:
 };
 
 int main() {
-    int player_count,score;
+    int score, choise;
     string name;
     Scoreboard scores;
-    cout << "Enter player : " << endl;
-    cin >> player_count;
-    for(int i=0; i<player_count; i++){
-        cout << "Enter name : ";
-        cin >> name;
-        cout << "Enter score : ";
-        cin >> score;
-        scores.addScore(name, score);
-    }
+    scores.addScore("Ono",100);
+    scores.addScore("Louis",120);
+    scores.addScore("Bibi",95);
     scores.showTopScores();
+    while(true){
+        cout << "Enter 1 to add score" << endl << "Enter 2 to Show score" << endl << "Enter -1 to quit : ";
+        cin >> choise;
+        if(choise == -1){
+            break;
+        }
+        else if (choise == 1){
+            cout << "Enter name : ";
+            cin >> name;
+            cout << "Enter score : ";
+            cin >> score;
+            scores.addScore(name,score);
+        }
+        else if (choise == 2){
+            scores.showTopScores();
+        }
+    }
     return 0;
 }
+
+/// Santijit Kamnak 65090500457
