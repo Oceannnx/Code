@@ -50,16 +50,29 @@ public:
         sort(scores, scores + count, [](const Score &a, const Score &b) {
             return a.score > b.score;
         });
-        int n = min(count, 3);
-        cout << "Top " << n << " scores:" << endl;
-        for (int i = 0; i < n; i++) {
-            cout << setw(10) << left << scores[i].name << ": " << scores[i].score << endl;
+        int n = min(count, 4);
+        cout << "Top " << 3 << " scores:" << endl;
+        if(n <= 3){
+            for (int i = 0; i < n; i++) {
+                cout << setw(10) << left << scores[i].name << ": " << scores[i].score << endl;
+            }
         }
+        else{
+            for (int i = 0; i < n; i++) {
+                if(i < 3){
+                    cout << setw(10) << left << scores[i].name << ": " << scores[i].score << endl;
+                }
+                else{
+                    cout << scores[i].name << " was removed from scoreboard" << endl;
+                }
+            }
+        }
+
     }
 };
 
 int main() {
-    int score, choise;
+    int score, choise,removedScore;
     string name;
     Scoreboard scores;
     scores.addScore("Ono",100);
@@ -67,19 +80,21 @@ int main() {
     scores.addScore("Bibi",95);
     scores.showTopScores();
     while(true){
-        cout << "Enter 1 to add score" << endl << "Enter 2 to Show score" << endl << "Enter -1 to quit : ";
+        cout <<endl << "Enter 1 to add score" << endl << "Enter 2 to Show score" << endl << "Enter -1 to quit : ";
         cin >> choise;
         if(choise == -1){
+
             break;
         }
         else if (choise == 1){
-            cout << "Enter name : ";
+            cout << endl << "Enter name : ";
             cin >> name;
             cout << "Enter score : ";
             cin >> score;
             scores.addScore(name,score);
         }
         else if (choise == 2){
+            cout<<endl;
             scores.showTopScores();
         }
     }
