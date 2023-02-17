@@ -83,7 +83,6 @@ int main() {
         cout <<endl << "Enter 1 to add score" << endl << "Enter 2 to Show score" << endl << "Enter -1 to quit : ";
         cin >> choise;
         if(choise == -1){
-
             break;
         }
         else if (choise == 1){
