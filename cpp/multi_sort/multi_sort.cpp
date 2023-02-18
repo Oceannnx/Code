@@ -20,15 +20,25 @@ void display_data_table(Data data[]){
     }
 }
 
-void data_A_sorted(data data[]){
+void multi_column_sort_ABC(Data data[]){
+    cout << data[0].number;
+}
+void multi_column_sort_ACB(Data data[]){
+    cout << data[0].number;
+}
+void multi_column_sort_BAC(Data data[]){
+    cout << data[0].number;
+}
+void multi_column_sort_BCA(Data data[]){
+    cout << data[0].number;
+}
+void multi_column_sort_CAB(Data data[]){
+    cout << data[0].number;
+}
+void multi_column_sort_CBA(Data data[]){
+    cout << data[0].number;
+}
 
-}
-void data_B_sorted(data data[]){
-    
-}
-void data_C_sorted(data data[]){
-    
-}
 
 int main(){
     int choice;
@@ -47,15 +57,6 @@ int main(){
     data[11] = {12,4,1,1};
     data[12] = {13,5,2,3};
     data[13] = {14,3,5,2};
-    while(true){
-        cout <<endl << "Enter 1 to Show data" << endl << "Enter 2 to Sort Data Column \"A\" by assending " << endl << "Enter 3 to Sort Data Column \"B\" by assending  " << endl << "Enter 3 to Sort Data Column \"C\" by assending  " << endl<< "Enter -1 to quit : ";
-        cin >> choice;
-        if(choice == -1){
-            break;
-        }
-        else if (choice == 1){
-            display_data_table(data);
-        }
-    }
+    multi_column_sort_ABC(data);
     return 0;
 }
