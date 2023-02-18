@@ -179,6 +179,7 @@ void multi_column_sort_CBA(Data data[]){
 
 
 int main(){
+    char choise[3];
     Data data[data_count];
     data[0] = {1,1,1,4};
     data[1] = {2,3,1,1};
@@ -194,7 +195,38 @@ int main(){
     data[11] = {12,4,1,1};
     data[12] = {13,5,2,3};
     data[13] = {14,3,5,2};
-    multi_column_sort_BCA(data);
-    display_data_table(data);
+
+    cout << "Enter Sort order : ";
+    cin >> choise[0] >> choise[1] >> choise[2];
+    if((choise[0] == 'a' or choise[0] == 'A') and (choise[1] == 'b' or choise[1] == 'B') and (choise[2] == 'c' or choise[2] == 'C')){
+        cout << "Data Sort by A >> B >> C" << endl;
+        multi_column_sort_ABC(data);
+        display_data_table(data);
+    }
+    else if((choise[0] == 'a' or choise[0] =='A') and (choise[1] == 'c' or choise[1] == 'C') and (choise[2] == 'b' or choise[2] == 'B')){
+        cout << "Data Sort by A >> C >> B" << endl;
+        multi_column_sort_ACB(data);
+        display_data_table(data);
+    }
+    else if((choise[0] == 'b' or choise[0] == 'B') and (choise[1] == 'a' or choise[1] == 'A') and (choise[2] == 'c' or choise[2] == 'C')){
+        cout << "Data Sort by B >> A >> C" << endl;
+        multi_column_sort_BAC(data);
+        display_data_table(data);
+    }
+    else if((choise[0] == 'b' or choise[0] == 'B') and (choise[1] == 'c' or choise[1] == 'C') and (choise[2] == 'a' or choise[2] == 'A')){
+        cout << "Data Sort by B >> C >> A" << endl;
+        multi_column_sort_BCA(data);
+        display_data_table(data);
+    }
+    else if((choise[0] == 'c' or choise[0] == 'C') and (choise[1] == 'a' or choise[1] == 'A') and (choise[2] == 'b' or choise[2] == 'B')){
+        cout << "Data Sort by C >> A >> B" << endl;
+        multi_column_sort_CAB(data);
+        display_data_table(data);
+    }
+    else if((choise[0] == 'c' or choise[0] == 'C') and (choise[1] == 'b' or choise[1] == 'B') and (choise[2] == 'a' or choise[2] == 'A')){
+        cout << "Data Sort by C >> B >> A" << endl;
+        multi_column_sort_CBA(data);
+        display_data_table(data);
+    }
     return 0;
 }
