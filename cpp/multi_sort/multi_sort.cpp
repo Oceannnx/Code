@@ -21,27 +21,164 @@ void display_data_table(Data data[]){
 }
 
 void multi_column_sort_ABC(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_a > data[j+1].data_a){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_a == data[j+1].data_a){
+                if(data[j].data_b > data[j+1].data_b){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_b == data[j+1].data_b){
+                    if(data[j].data_c > data[j+1].data_c){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 void multi_column_sort_ACB(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_a > data[j+1].data_a){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_a == data[j+1].data_a){
+                if(data[j].data_c > data[j+1].data_c){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_c == data[j+1].data_c){
+                    if(data[j].data_b > data[j+1].data_b){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 void multi_column_sort_BAC(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_b > data[j+1].data_b){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_b == data[j+1].data_b){
+                if(data[j].data_a > data[j+1].data_a){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_a == data[j+1].data_a){
+                    if(data[j].data_c > data[j+1].data_c){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 void multi_column_sort_BCA(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_b > data[j+1].data_b){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_b == data[j+1].data_b){
+                if(data[j].data_c > data[j+1].data_c){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_c == data[j+1].data_c){
+                    if(data[j].data_a > data[j+1].data_a){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 void multi_column_sort_CAB(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_c > data[j+1].data_c){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_c == data[j+1].data_c){
+                if(data[j].data_a > data[j+1].data_a){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_a == data[j+1].data_a){
+                    if(data[j].data_b > data[j+1].data_b){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 void multi_column_sort_CBA(Data data[]){
-    cout << data[0].number;
+    Data temp;
+    for(int i=0; i<data_count-1; i++){
+        for(int j=0; j<data_count-i-1; j++){
+            if(data[j].data_c > data[j+1].data_c){
+                temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+            }
+            else if(data[j].data_c == data[j+1].data_c){
+                if(data[j].data_b > data[j+1].data_b){
+                    temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                    data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                    data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                }
+                else if(data[j].data_b == data[j+1].data_b){
+                    if(data[j].data_a > data[j+1].data_a){
+                        temp = {data[j].number, data[j].data_a ,data[j].data_b ,data[j].data_c};
+                        data[j] = {data[j+1].number, data[j+1].data_a ,data[j+1].data_b ,data[j+1].data_c};
+                        data[j+1] = {temp.number, temp.data_a ,temp.data_b ,temp.data_c};
+                    }
+                }
+            }
+        }
+    }
 }
 
 
 int main(){
-    int choice;
     Data data[data_count];
     data[0] = {1,1,1,4};
     data[1] = {2,3,1,1};
@@ -57,6 +194,7 @@ int main(){
     data[11] = {12,4,1,1};
     data[12] = {13,5,2,3};
     data[13] = {14,3,5,2};
-    multi_column_sort_ABC(data);
+    multi_column_sort_BCA(data);
+    display_data_table(data);
     return 0;
 }
