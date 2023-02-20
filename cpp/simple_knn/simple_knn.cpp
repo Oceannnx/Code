@@ -1,20 +1,18 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
 using namespace std;
 
 const int nearest = 5;
 const int people_count = 52;
-
 struct Data{
     string name;
     double ne, ni, te, ti, se, si, fe, fi;
     string mbti;
     string nickname;
-    double distance = 0.00;
+    int distance = 9999;
 };
 
-double getDistance(Data a, Data b){
+double get_Distance(Data a, Data b){
     double dist = 0;
     dist += pow(a.ne - b.ne, 2);
     dist += pow(a.ni - b.ni, 2);
@@ -25,19 +23,6 @@ double getDistance(Data a, Data b){
     dist += pow(a.fe - b.fe, 2);
     dist += pow(a.fi - b.fi, 2);
     return sqrt(dist);
-}
-
-void bubble_sort(Data data[]){
-    Data temp;
-    for (int i = 0; i < people_count - 1; i++){
-        for (int j = 0; j < people_count - i - 1; j++){
-            if(data[j].distance > data[j+1].distance){
-                temp = {data[j].name, data[j].ne, data[j].ni, data[j].te, data[j].ti, data[j].se, data[j].si, data[j].fe, data[j].fi, data[j].mbti, data[j].nickname, data[j].distance};
-                data[j] = {data[j + 1].name, data[j + 1].ne, data[j + 1].ni, data[j + 1].te, data[j + 1].ti, data[j + 1].se, data[j + 1].si, data[j + 1].fe, data[j + 1].fi, data[j + 1].mbti, data[j + 1].nickname, data[j + 1].distance};
-                data[j + 1] = {temp.name, temp.ne, temp.ni, temp.te, temp.ti, temp.se, temp.si, temp.fe, temp.fi, temp.mbti, temp.nickname, temp.distance};
-            }
-        }
-    }
 }
 
 void get_mbti(Data myself, Data data[]){
@@ -56,7 +41,31 @@ void get_mbti(Data myself, Data data[]){
     (j < p) ? temp[3] = 'P' : temp[3] = 'J';
     myself.mbti = temp;
     cout << "Your MBTI is : " << myself.mbti << endl;
- 
+}
+
+void get_nearest_data(Data data[], Data nearest_data[]){
+    Data temp;
+    for(int i=0; i<people_count; i++){
+        if(data[i].distance < nearest_data[4].distance){
+            nearest_data[4] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
+            if(data[i].distance < nearest_data[3].distance){
+                nearest_data[3] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
+                nearest_data[4] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
+                if(data[i].distance < nearest_data[2].distance){
+                    nearest_data[2] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
+                    nearest_data[3] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
+                    if(data[i].distance < nearest_data[1].distance){
+                        nearest_data[1] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
+                        nearest_data[2] ={"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
+                        if(data[i].distance < nearest_data[0].distance){
+                            nearest_data[0] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
+                            nearest_data[1] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 int main()
@@ -65,17 +74,18 @@ int main()
 
     Data myself;
     // myself = {"Santijit Kamnak", 32, 32, 27, 36, 29, 31, 28, 23,  "", "Ono"};
+    // myself = {"Santijit Kamnak", 24.8, 19.2, 25, 30, 22, 28, 19, 25, "", "Ono"};
     myself = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "", "Ono"};
+    // myself = {"Santijit Kamnak", 33, 33.6, 25, 29, 25, 28, 35, 34, "", "Ono"};
 
 
     Data data[people_count];
-    data[0] = {"Warin Wattanapornprom", 32, 32, 27, 36, 29, 31, 28, 23, "INTP", "Aj.Yong"};
+    data[0] = {"Warin Wattanapornprom", 32, 32, 27, 36, 29, 31, 28, 23, "INTJ", "Aj.Yong"};
     data[1] = {"Kornkanok  Welagert", 28.4, 29.4, 29, 34, 27, 24, 23, 21, "ISTP", "Somchun"};
     data[2] = {"Kunakron Tana", 30, 24, 25, 27, 23, 28, 26, 17, "ENTP", "Title"};
     data[3] = {"Chinnapt Sukthong", 30, 24, 25, 27, 23, 28, 26, 17, "ISTJ", "Nai"};
     data[4] = {"Chinavat Nachaithong", 35.6, 37.8, 27, 28, 28, 29, 36, 35, "ENFP", "Mon"};
     data[5] = {"Teekamon Chaiwongwutikul", 23.4, 26, 27, 30, 28, 31, 26, 21, "ISTJ", "Queen"};
-    // data[5] = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "ISTP", "Ono"};
     data[6] = {"Dollatham Charoethammkic", 37, 47.8, 43, 47, 47, 45, 37, 43, "INTJ", "Oat"};
     data[7] = {"Thiyada Kittiwithitkun", 34, 26.6, 26, 29, 28, 34, 33, 32, "ESFJ", "Por"};
     data[8] = {"Thidarat Sitthidech", 29, 31.2, 26, 27, 17, 32, 33, 26, "INFJ", "Louknam"};
@@ -122,10 +132,15 @@ int main()
     data[49] = {"Natchapon Ponlaem", 33.6, 32, 34, 31, 31, 37, 36, 29, "ESFJ", "Two"};
     data[50] = {"Phacharaphon Aiamphan", 36.4, 36.4, 34, 32, 31, 31, 37, 29, "INTP", "Folk"};
     data[51] = {"Sarita Tongsawat", 33, 33.6, 25, 29, 25, 28, 35, 34, "INFJ", "Gam"};
+    // data[51] = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "ISTP", "Ono"};
 
-    for (int i = 0; i < people_count; i++){
-        data[i].distance = getDistance(myself, data[i]);
+    Data nearest_data[5];
+    for(int i=0; i<5; i++){
+        nearest_data[i] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
     }
-    bubble_sort(data);
-    get_mbti(myself,data);
+    for (int i = 0; i < people_count; i++){
+        data[i].distance = get_Distance(myself, data[i]);
+    }
+    get_nearest_data(data, nearest_data);
+    get_mbti(myself,nearest_data);
 }
