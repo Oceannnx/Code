@@ -3,7 +3,7 @@
 #include <cmath>
 using namespace std;
 
-const int nearest = 3;
+const int nearest = 5;
 const int people_count = 52;
 
 struct Data{
@@ -40,12 +40,33 @@ void bubble_sort(Data data[]){
     }
 }
 
+void get_mbti(Data myself, Data data[]){
+    int e=0 ,ie=0 ,s=0 ,n=0 ,t=0 ,f=0 ,j=0 ,p=0 ;
+    char temp[4];
+    for(int i=0; i<nearest; i++){
+        cout << "The nerest MBTI : " << data[i].nickname  << " : " <<data[i].mbti << " : " << data[i].distance << endl;
+        ((data[i].mbti)[0] == 'e' or (data[i].mbti)[0] == 'E') ? e+=1 : ie+=1;
+        ((data[i].mbti)[1] == 's' or (data[i].mbti)[1] == 'S') ? s+=1 : n+=1;
+        ((data[i].mbti)[2] == 't' or (data[i].mbti)[2] == 'T') ? t+=1 : f+=1;
+        ((data[i].mbti)[3] == 'j' or (data[i].mbti)[3] == 'J') ? j+=1 : p+=1;
+    }
+    (e < ie) ? temp[0] = 'I' : temp[0] = 'E';
+    (s < n) ? temp[1] = 'N': temp[1] = 'S';
+    (t < f) ? temp[2] = 'F' : temp[2] = 'T';
+    (j < p) ? temp[3] = 'P' : temp[3] = 'J';
+    myself.mbti = temp;
+    cout << "Your MBTI is : " << myself.mbti << endl;
+ 
+}
+
 int main()
 {
     double distance[people_count];
 
     Data myself;
-    myself = {"Santijit Kamnak", 23.3, 28.6, 31, 23, 26, 23, 19, 25, "", "Ono"};
+    // myself = {"Santijit Kamnak", 32, 32, 27, 36, 29, 31, 28, 23,  "", "Ono"};
+    myself = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "", "Ono"};
+
 
     Data data[people_count];
     data[0] = {"Warin Wattanapornprom", 32, 32, 27, 36, 29, 31, 28, 23, "INTP", "Aj.Yong"};
@@ -54,6 +75,7 @@ int main()
     data[3] = {"Chinnapt Sukthong", 30, 24, 25, 27, 23, 28, 26, 17, "ISTJ", "Nai"};
     data[4] = {"Chinavat Nachaithong", 35.6, 37.8, 27, 28, 28, 29, 36, 35, "ENFP", "Mon"};
     data[5] = {"Teekamon Chaiwongwutikul", 23.4, 26, 27, 30, 28, 31, 26, 21, "ISTJ", "Queen"};
+    // data[5] = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "ISTP", "Ono"};
     data[6] = {"Dollatham Charoethammkic", 37, 47.8, 43, 47, 47, 45, 37, 43, "INTJ", "Oat"};
     data[7] = {"Thiyada Kittiwithitkun", 34, 26.6, 26, 29, 28, 34, 33, 32, "ESFJ", "Por"};
     data[8] = {"Thidarat Sitthidech", 29, 31.2, 26, 27, 17, 32, 33, 26, "INFJ", "Louknam"};
@@ -105,7 +127,5 @@ int main()
         data[i].distance = getDistance(myself, data[i]);
     }
     bubble_sort(data);
-    cout << data[0].distance << " ";
-    cout << data[1].distance << " ";
-    cout << data[2].distance;
+    get_mbti(myself,data);
 }
