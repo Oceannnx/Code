@@ -1,15 +1,16 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 const int nearest = 5;
 const int people_count = 52;
 struct Data{
-    string name;
-    double ne, ni, te, ti, se, si, fe, fi;
-    string mbti;
-    string nickname;
-    int distance = 9999;
+    string name = "";
+    double ne = 0, ni = 0, te = 0, ti = 0, se = 0, si = 0, fe = 0, fi= 0;
+    string mbti = "";
+    string nickname = "";
+    double distance = 9999;
 };
 
 double get_Distance(Data a, Data b){
@@ -29,7 +30,7 @@ void get_mbti(Data myself, Data data[]){
     int e=0 ,ie=0 ,s=0 ,n=0 ,t=0 ,f=0 ,j=0 ,p=0 ;
     char temp[4];
     for(int i=0; i<nearest; i++){
-        cout << "The nerest MBTI : " << data[i].nickname  << " : " <<data[i].mbti << " : " << data[i].distance << endl;
+        cout << "The nerest MBTI : " << setw(7) << left << data[i].nickname  << " : " << setw(7) << left << data[i].mbti << " : " << setw(7) << left << data[i].distance << endl;
         ((data[i].mbti)[0] == 'e' or (data[i].mbti)[0] == 'E') ? e+=1 : ie+=1;
         ((data[i].mbti)[1] == 's' or (data[i].mbti)[1] == 'S') ? s+=1 : n+=1;
         ((data[i].mbti)[2] == 't' or (data[i].mbti)[2] == 'T') ? t+=1 : f+=1;
@@ -48,21 +49,25 @@ void get_nearest_data(Data data[], Data nearest_data[]){
     for(int i=0; i<people_count; i++){
         if(data[i].distance < nearest_data[4].distance){
             nearest_data[4] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
-            if(data[i].distance < nearest_data[3].distance){
-                nearest_data[3] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
-                nearest_data[4] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
-                if(data[i].distance < nearest_data[2].distance){
-                    nearest_data[2] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
-                    nearest_data[3] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
-                    if(data[i].distance < nearest_data[1].distance){
-                        nearest_data[1] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
-                        nearest_data[2] ={"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
-                        if(data[i].distance < nearest_data[0].distance){
-                            nearest_data[0] = {data[i].name, data[i].ne, data[i].ni, data[i].te, data[i].ti, data[i].se, data[i].si, data[i].fe, data[i].fi, data[i].mbti, data[i].nickname, data[i].distance};
-                            nearest_data[1] = {"", 0, 0, 0, 0, 0, 0, 0, 0, "", ""};
+            if(nearest_data[4].distance < nearest_data[3].distance){
+                temp = {nearest_data[3].name, nearest_data[3].ne, nearest_data[3].ni, nearest_data[3].te, nearest_data[3].ti, nearest_data[3].se, nearest_data[3].si, nearest_data[3].fe, nearest_data[3].fi, nearest_data[3].mbti, nearest_data[3].nickname, nearest_data[3].distance};
+                nearest_data[3] = {nearest_data[4].name, nearest_data[4].ne, nearest_data[4].ni, nearest_data[4].te, nearest_data[4].ti, nearest_data[4].se, nearest_data[4].si, nearest_data[4].fe, nearest_data[4].fi, nearest_data[4].mbti, nearest_data[4].nickname, nearest_data[4].distance};
+                nearest_data[4] =  {temp.name, temp.ne, temp.ni, temp.te, temp.ti, temp.se, temp.si, temp.fe, temp.fi, temp.mbti, temp.nickname, temp.distance};
+                if(nearest_data[3].distance < nearest_data[2].distance){
+                    temp = {nearest_data[2].name, nearest_data[2].ne, nearest_data[2].ni, nearest_data[2].te, nearest_data[2].ti, nearest_data[2].se, nearest_data[2].si, nearest_data[2].fe, nearest_data[2].fi, nearest_data[2].mbti, nearest_data[2].nickname, nearest_data[2].distance};
+                    nearest_data[2] = {nearest_data[3].name, nearest_data[3].ne, nearest_data[3].ni, nearest_data[3].te, nearest_data[3].ti, nearest_data[3].se, nearest_data[3].si, nearest_data[3].fe, nearest_data[3].fi, nearest_data[3].mbti, nearest_data[3].nickname, nearest_data[3].distance};
+                    nearest_data[3] =  {temp.name, temp.ne, temp.ni, temp.te, temp.ti, temp.se, temp.si, temp.fe, temp.fi, temp.mbti, temp.nickname, temp.distance};
+                    if(nearest_data[2].distance < nearest_data[1].distance){
+                        temp = {nearest_data[1].name, nearest_data[1].ne, nearest_data[1].ni, nearest_data[1].te, nearest_data[1].ti, nearest_data[1].se, nearest_data[1].si, nearest_data[1].fe, nearest_data[1].fi, nearest_data[1].mbti, nearest_data[1].nickname, nearest_data[1].distance};
+                        nearest_data[1] = {nearest_data[2].name, nearest_data[2].ne, nearest_data[2].ni, nearest_data[2].te, nearest_data[2].ti, nearest_data[2].se, nearest_data[2].si, nearest_data[2].fe, nearest_data[2].fi, nearest_data[2].mbti, nearest_data[2].nickname, nearest_data[2].distance};
+                        nearest_data[2] =  {temp.name, temp.ne, temp.ni, temp.te, temp.ti, temp.se, temp.si, temp.fe, temp.fi, temp.mbti, temp.nickname, temp.distance};
+                        if(nearest_data[1].distance < nearest_data[0].distance){
+                            temp = {nearest_data[0].name, nearest_data[0].ne, nearest_data[0].ni, nearest_data[0].te, nearest_data[0].ti, nearest_data[0].se, nearest_data[0].si, nearest_data[0].fe, nearest_data[0].fi, nearest_data[0].mbti, nearest_data[0].nickname, nearest_data[0].distance};
+                            nearest_data[0] = {nearest_data[1].name, nearest_data[1].ne, nearest_data[1].ni, nearest_data[1].te, nearest_data[1].ti, nearest_data[1].se, nearest_data[1].si, nearest_data[1].fe, nearest_data[1].fi, nearest_data[1].mbti, nearest_data[1].nickname, nearest_data[1].distance};
+                            nearest_data[1] =  {temp.name, temp.ne, temp.ni, temp.te, temp.ti, temp.se, temp.si, temp.fe, temp.fi, temp.mbti, temp.nickname, temp.distance};
                         }
                     }
-                }
+                }   
             }
         }
     }
@@ -75,8 +80,12 @@ int main()
     Data myself;
     // myself = {"Santijit Kamnak", 32, 32, 27, 36, 29, 31, 28, 23,  "", "Ono"};
     // myself = {"Santijit Kamnak", 24.8, 19.2, 25, 30, 22, 28, 19, 25, "", "Ono"};
-    myself = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "", "Ono"};
+    // myself = {"Santijit Kamnak",  22.4, 29.6, 26, 26, 26, 30, 22, 25, "", "Ono"};
     // myself = {"Santijit Kamnak", 33, 33.6, 25, 29, 25, 28, 35, 34, "", "Ono"};
+    cout << "Enter your info : ";
+    cin >> myself.ne >> myself.ni >> myself.te >> myself.ti >> myself.se >> myself.si >> myself.fe >> myself.fi;
+    // cout <<  myself.ne << " " << myself.ni << " " << myself.te << " " << myself.ti << " " << myself.se << " " << myself.si << " " <<myself.fe << " " <<myself.fi;
+
 
 
     Data data[people_count];
@@ -132,7 +141,7 @@ int main()
     data[49] = {"Natchapon Ponlaem", 33.6, 32, 34, 31, 31, 37, 36, 29, "ESFJ", "Two"};
     data[50] = {"Phacharaphon Aiamphan", 36.4, 36.4, 34, 32, 31, 31, 37, 29, "INTP", "Folk"};
     data[51] = {"Sarita Tongsawat", 33, 33.6, 25, 29, 25, 28, 35, 34, "INFJ", "Gam"};
-    // data[51] = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "ISTP", "Ono"};
+    // data[14] = {"Santijit Kamnak", 22.4, 29.6, 26, 26, 26, 30, 22, 25, "ISTP", "Ono"};
 
     Data nearest_data[5];
     for(int i=0; i<5; i++){
@@ -144,3 +153,7 @@ int main()
     get_nearest_data(data, nearest_data);
     get_mbti(myself,nearest_data);
 }
+
+
+//// Santijit Kamnak 65090500457
+
