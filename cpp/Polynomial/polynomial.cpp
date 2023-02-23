@@ -198,15 +198,35 @@ int main()
 {
 	Node *poly1 = NULL, *poly2 = NULL, *poly3 = NULL;
 
+    int choice, coefficient, power;
 
-	poly1 = addnode(poly1, 3, 3);
-	poly1 = addnode(poly1, 6, 1);
-	poly1 = addnode(poly1, -9, 0);
+    cout << "Enter polynomial 1 : ";
+    cin >> choice;
+    for(int i = 0; i <choice; i++){
+        cout << "Enter coefficient : ";
+        cin >> coefficient;
+        cout << "Enter power : ";
+        cin >> power;
+        poly1 = addnode(poly1, coefficient, power);
+    }
+    cout << "Enter polynomial 2 : ";
+    cin >> choice;
+    for(int i = 0; i <choice; i++){
+        cout << "Enter coefficient : ";
+        cin >> coefficient;
+        cout << "Enter power : ";
+        cin >> power;
+        poly2 = addnode(poly2, coefficient, power);
+    }
 
-	poly2 = addnode(poly2, 9, 3);
-	poly2 = addnode(poly2, -8, 2);
-	poly2 = addnode(poly2, 7, 1);
-	poly2 = addnode(poly2, 2, 0);
+	// poly1 = addnode(poly1, 3, 3);
+	// poly1 = addnode(poly1, 6, 1);
+	// poly1 = addnode(poly1, -9, 0);
+
+	// poly2 = addnode(poly2, 9, 3);
+	// poly2 = addnode(poly2, -8, 2);
+	// poly2 = addnode(poly2, 7, 1);
+	// poly2 = addnode(poly2, 2, 0);
 
 	// Displaying 1st polynomial
 	cout << "1st Polynomial:- ";
